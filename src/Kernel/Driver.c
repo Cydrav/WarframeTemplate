@@ -35,6 +35,8 @@ AddressTable sPtr;
 
 VOID ObtainFileDriverIO(void)
 {
+	// File creation and open 
+	// https://support.microsoft.com/en-us/help/891805/how-to-open-a-file-from-a-kernel-mode-device-driver-and-how-to-read-fr
 	UNICODE_STRING     uniName;
 	OBJECT_ATTRIBUTES  objAttr;
 
