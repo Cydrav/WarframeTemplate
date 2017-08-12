@@ -79,7 +79,6 @@ VOID ObtainFileDriverIO(void)
 	ZwClose(handle);
 }
 
-
 VOID ProcessLoadImageCallback(_In_opt_ PUNICODE_STRING FullImageName, IN HANDLE ProcessId, IN PIMAGE_INFO ImageInfo)
 {
 	DWORD64 test = *****************;
@@ -97,8 +96,6 @@ VOID ProcessLoadImageCallback(_In_opt_ PUNICODE_STRING FullImageName, IN HANDLE 
 		return;
 	}
 }
-
-
 
 VOID WorkThread(IN PVOID pContext)
 {
@@ -167,7 +164,6 @@ VOID WorkThread(IN PVOID pContext)
 	ObDereferenceObject(sPtr.client_process);
 	PsTerminateSystemThread(STATUS_SUCCESS);
 }
-
 
 NTSTATUS UnloadDriver(PDRIVER_OBJECT pDriverObject)
 {
