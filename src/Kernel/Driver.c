@@ -8,15 +8,14 @@ DRIVER_INITIALIZE DriverEntry;
 PDEVICE_OBJECT pDeviceObject; // our driver object
 UNICODE_STRING dev;
 
-
+ULONG Base;
+ULONG Pid;
 
 NTKERNELAPI NTSTATUS PsLookupProcessByProcessId
 (
 	_In_ HANDLE ProcessId,
 	_Outptr_ PEPROCESS *Process
 	);
-
-
 
 typedef struct _AddressTable
 {
@@ -29,8 +28,6 @@ typedef struct _AddressTable
 	PVOID ImageBase;
 } AddressTable;
 
-ULONG Base;
-ULONG Pid;
 AddressTable sPtr;
 
 VOID ObtainFileDriverIO(void)
@@ -40,7 +37,7 @@ VOID ObtainFileDriverIO(void)
 	UNICODE_STRING     uniName;
 	OBJECT_ATTRIBUTES  objAttr;
 
-	RtlInitUnicodeString(&uniName, L"\\DosDevices\\C:\\dlog.txt");  // or L"\\SystemRoot\\example.txt"
+	RtlInitUnicodeString(&uniName, L"\\DosDevices\\C:\\dlog.txt");
 	InitializeObjectAttributes(&objAttr, &uniName,
 		OBJ_CASE_INSENSITIVE | OBJ_KERNEL_HANDLE,
 		NULL, NULL);
@@ -48,10 +45,7 @@ VOID ObtainFileDriverIO(void)
 	HANDLE   handle;
 	NTSTATUS ntstatus;
 	IO_STATUS_BLOCK    ioStatusBlock;
-
-	// Do not try to perform any file operations at higher IRQL levels.
-	// Instead, you may use a work item or a system worker thread to perform file operations.
-
+	
 	if (KeGetCurrentIrql() != PASSIVE_LEVEL)
 		return;
 
@@ -124,6 +118,7 @@ VOID WorkThread(IN PVOID pContext)
 
 	LARGE_INTEGER sTime;
 	sTime.QuadPart = 10000;
+	
 	PsSetLoadImageNotifyRoutine(ProcessLoadImageCallback);
 
 	while (Base == NULL)
