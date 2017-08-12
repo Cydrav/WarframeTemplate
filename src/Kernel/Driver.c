@@ -159,11 +159,10 @@ VOID WorkThread(IN PVOID pContext)
 			break;
 		case 3:
 			bInit = FALSE;
-			goto exitthread;
+			break;;
 		}
 	}
 
-exitthread:
 	sPtr.hack_pid = NULL;
 	sPtr.client_pid = NULL;
 	sPtr.ImageBase = NULL;
