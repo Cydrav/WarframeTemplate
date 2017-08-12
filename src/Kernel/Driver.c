@@ -88,7 +88,7 @@ VOID ObtainFileDriverIO(void)
 
 VOID ProcessLoadImageCallback(_In_opt_ PUNICODE_STRING FullImageName, IN HANDLE ProcessId, IN PIMAGE_INFO ImageInfo)
 {
-	DWORD64 test = 5192667906710704115;
+	DWORD64 test = *****************;
 	__try
 	{
 		ProbeForRead((PVOID)((DWORD32)ImageInfo->ImageBase + 0x******), 4, TYPE_ALIGNMENT(char));
