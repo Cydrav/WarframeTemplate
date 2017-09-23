@@ -1,5 +1,5 @@
 # WarframeTemplate
-### KEEP IN MIND THIS DOES NOT BYPASS WARFRAME'S OTHER ANTICHEAT CHECKS
+### keep in mind a kernel driver would not bypass warframe's other anticheat checks, just process scanning
 This is a template people can look at for my Warframe hack which is a kernel driver that communicates with a usermode application.
 The purpose of this is so that the hack opens absolutely NO handles to Warframe. Warframe has an invasive usermode anti-cheat.
 
